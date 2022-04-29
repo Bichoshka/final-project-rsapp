@@ -1,4 +1,5 @@
 from preprocess import *
+import Forest as f
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import PassiveAggressiveClassifier
@@ -22,18 +23,5 @@ def low_fit(model):
     final.append([str(model), round(score*100,2)])
 
 #%% model 1
-model = RandomForestClassifier()
-space = dict()
-space['criterion'] = ['gini', 'entropy']
-space['n_estimators'] = np.array(range(100, 350, 25))
-space['max_features'] = ['auto', 'sqrt', 'log2']
-
-
-search = RandomizedSearchCV(model, space, n_iter=100, scoring='f1', n_jobs=-1, cv=cv, random_state=451)
-result = search.fit(X, y)
-
-print('Best Score: %s' % result.best_score_)
-print('Best Hyperparameters: %s' % result.best_params_)
-
-
+print(f.rf_score, f.pac_score, f.gb_score)
 #%%
