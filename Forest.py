@@ -1,8 +1,8 @@
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
 from sklearn.model_selection import RandomizedSearchCV
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 from scipy.stats import loguniform
 from preprocess import X,y
@@ -41,15 +41,15 @@ print('Best Hyperparameters: %s' % result.best_params_)
 
 
 
-model = PassiveAggressiveClassifier(n_jobs=-1)
+model = KNeighborsClassifier(n_jobs=-1)
 space = dict()
 space['loss'] = ['hinge', 'squared_hinge']
 space['C'] = loguniform(1e-5, 100)
-#space['max_features'] = ['auto', 'sqrt', 'log2']
 
 search = RandomizedSearchCV(model, space, n_iter=2000, scoring='accuracy', n_jobs=-1, cv=cv, random_state=451)
 result = search.fit(X, y)
-pac_score = result.best_score_
-pac_params = result.best_params_
+knn_score = result.best_score_
+knn_params = result.best_params_
 print('Best Score: %s' % result.best_score_)
 print('Best Hyperparameters: %s' % result.best_params_)
+np.linspace(1,50)
