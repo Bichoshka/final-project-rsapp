@@ -8,7 +8,6 @@ df = pd.read_csv('data/train.csv', index_col='Id')
 X = df.drop(['Cover_Type'], axis=1)
 y = df.Cover_Type
 x_train, x_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=451)
-x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.25, random_state=451)
 
 column_names = ['Elevation', 'Slope', 'Horizontal_Distance_To_Hydrology', 'Vertical_Distance_To_Hydrology',
                 'Hillshade_9am', 'Hillshade_Noon', 'Hillshade_3pm', 'Horizontal_Distance_To_Fire_Points',
@@ -21,10 +20,8 @@ def sc(i):
     features = scaler.transform(features.values)
     scaled_features[column_names] = features
     return scaled_features
-x_train_sc, x_test_sc, x_val_sc = sc(x_train), sc(x_test), sc(x_val)#%%
+x_train_sc, x_test_sc = sc(x_train), sc(x_test)#%%
 
 x_train_sc['Aspect'] = x_train_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
 x_test_sc['Aspect'] = x_test_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
-x_val_sc['Aspect'] = x_val_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
-
 #%%
