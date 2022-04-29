@@ -14,9 +14,6 @@ column_names = ['Elevation', 'Slope', 'Horizontal_Distance_To_Hydrology', 'Verti
                 'Hillshade_9am', 'Hillshade_Noon', 'Hillshade_3pm', 'Horizontal_Distance_To_Fire_Points',
                 'Horizontal_Distance_To_Roadways']
 
-'''t = ColumnTransformer([
-    ('somename', StandardScaler(), column_names)
-], remainder='passthrough')'''
 def sc(i):
     scaled_features = i.copy()
     features = scaled_features[column_names]
@@ -26,6 +23,8 @@ def sc(i):
     return scaled_features
 x_train_sc, x_test_sc, x_val_sc = sc(x_train), sc(x_test), sc(x_val)#%%
 
-
+x_train_sc['Aspect'] = x_train_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
+x_test_sc['Aspect'] = x_test_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
+x_val_sc['Aspect'] = x_val_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
 
 #%%
