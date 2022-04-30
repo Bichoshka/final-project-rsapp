@@ -13,7 +13,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import PassiveAggressiveClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, roc_auc_score, f1_score
 from sklearn.model_selection import RandomizedSearchCV
 
 cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=5, random_state=451)
@@ -26,9 +26,15 @@ def low_fit(model):
     score=accuracy_score(y_test, y_pred)
     score_train = accuracy_score(y_train, model.predict(x_train_sc))
 
+    auc = model.predict_proba(x_test)
+    roc = roc_auc_score(y_test, auc, multi_class='ovr')
+    fscore = f1_score(y_test, y_pred, average='macro')
+
     print(f'Train accuracy: {round(score_train*100,2)}%')
     print(f'Test accuracy: {round(score*100,2)}%')
-    experiment.log_metric('accuracy', score)
+
+    metrics = {"Accuracy":score, 'ROC AUC':roc, 'F1':fscore}
+    experiment.log_metrics(metrics)
 
 #%% model 1
 #print(f.rf_score, f.knn_score, f.gb_score)

@@ -21,6 +21,7 @@ def sc(i):
     scaled_features[column_names] = features
     return scaled_features
 x_train_sc, x_test_sc = sc(x_train), sc(x_test)
+X_sc = sc(X)
 
 x_train_sc['Aspect'] = x_train_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
 x_test_sc['Aspect'] = x_test_sc['Aspect'].apply(lambda x: np.sin(x*np.pi/180))
