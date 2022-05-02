@@ -1,3 +1,4 @@
+import pandas as pd
 from comet_ml import Experiment
 
 experiment = Experiment(
@@ -36,9 +37,23 @@ def low_fit(model):
     metrics = {"Accuracy":score, 'ROC AUC':roc, 'F1':fscore}
     experiment.log_metrics(metrics)
 
-#%% model 1
-#print(f.rf_score, f.knn_score, f.gb_score)
+
 #%%
-RF = RandomForestClassifier(n_estimators=175, max_features=25, max_depth=29, criterion='entropy', n_jobs=-1)
+RF = RandomForestClassifier(n_estimators=325, max_features='sqrt', max_depth=38, criterion='entropy', n_jobs=-1, random_state=451)
 low_fit(RF)
 experiment.end()
+#%%
+from sklearn.ensemble import AdaBoostClassifier
+ada = AdaBoostClassifier(base_estimator=RF, n_estimators=47, learning_rate=1.448551724137931, algorithm='SAMME.R', random_state=451)
+#ada = AdaBoostClassifier(base_estimator = RandomForestClassifier())
+low_fit(ada)
+experiment.end()
+#%%
+ada.fit(X_sc,y)
+testdata = pd.read_csv('data/test.csv', index_col='Id')
+testdata = sc(testdata)
+testpred = RF.predict(testdata)
+testdata['Cover_Type'] = testpred
+fin = testdata['Cover_Type']
+fin = fin.reset_index()#%%
+fin.to_csv('fin.csv', index=False)

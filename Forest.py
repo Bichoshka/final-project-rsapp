@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score
 from scipy.stats import loguniform
 from preprocess import X,y
 import numpy as np
-
+from sklearn.ensemble import AdaBoostClassifier
 
 cv = RepeatedStratifiedKFold(n_splits=5, n_repeats=3, random_state=451)
 
@@ -16,9 +16,9 @@ space = dict()
 space['criterion'] = ['gini', 'entropy']
 space['n_estimators'] = np.array(range(100, 350, 15))
 space['max_features'] = ['auto', 'sqrt', 'log2']
-space['max_depth'] = range(1,50)
+space['max_depth'] = range(1,60)
 
-search = RandomizedSearchCV(model, space, n_iter=100, scoring='accuracy', n_jobs=-1, cv=cv, random_state=451)
+search = RandomizedSearchCV(model, space, n_iter=200, scoring='accuracy', n_jobs=-1, cv=cv, random_state=451)
 result = search.fit(X, y)
 rf_score = result.best_score_
 rf_params = result.best_params_
@@ -56,4 +56,18 @@ print('Best Score: %s' % result.best_score_)
 print('Best Hyperparameters: %s' % result.best_params_)
 '''
 
+
+
+#%%
+model = AdaBoostClassifier(base_estimator=RandomForestClassifier(n_estimators=325, max_features='sqrt', max_depth=38, criterion='entropy', n_jobs=-1, random_state=451))
+space = dict()
+space['n_estimators'] = range(1,50)
+space['learning_rate'] = np.linspace(0.001, 2, 30)
+
+search = RandomizedSearchCV(model, space, n_iter=150, scoring='accuracy', n_jobs=-1, cv=cv, random_state=451)
+result = search.fit(X, y)
+ada_score = result.best_score_
+ada_params = result.best_params_
+print('Best Score: %s' % result.best_score_)
+print('Best Hyperparameters: %s' % result.best_params_)
 #%%
