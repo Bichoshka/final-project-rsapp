@@ -27,7 +27,7 @@ def low_fit(model):
     score=accuracy_score(y_test, y_pred)
     score_train = accuracy_score(y_train, model.predict(x_train_sc))
 
-    auc = model.predict_proba(x_test)
+    auc = model.predict_proba(x_test_sc)
     roc = roc_auc_score(y_test, auc, multi_class='ovr')
     fscore = f1_score(y_test, y_pred, average='macro')
 
@@ -39,7 +39,7 @@ def low_fit(model):
 
 
 #%%
-RF = RandomForestClassifier(n_estimators=325, max_features='sqrt', max_depth=38, criterion='entropy', n_jobs=-1, random_state=451)
+RF = RandomForestClassifier(n_estimators=295, max_features='auto', max_depth=43, criterion='entropy', n_jobs=-1, random_state=451)
 low_fit(RF)
 experiment.end()
 #%%
@@ -49,7 +49,7 @@ ada = AdaBoostClassifier(base_estimator=RF, n_estimators=47, learning_rate=1.448
 low_fit(ada)
 experiment.end()
 #%%
-ada.fit(X_sc,y)
+RF.fit(X_sc,y)
 testdata = pd.read_csv('data/test.csv', index_col='Id')
 testdata = sc(testdata)
 testpred = RF.predict(testdata)

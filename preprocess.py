@@ -2,7 +2,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.compose import ColumnTransformer
+
 import numpy as np
 df = pd.read_csv('data/train.csv', index_col='Id')
 X = df.drop(['Cover_Type'], axis=1)
