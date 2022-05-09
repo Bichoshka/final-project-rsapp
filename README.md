@@ -1,6 +1,6 @@
 This project uses <a href="https://www.kaggle.com/competitions/forest-cover-type-prediction">this dataset</a> 
 
-As for an environment manager I used conda,  feel free to download conva_env.yaml
+As for an environment manager I used conda,  feel free to download **conva_env.yaml** and activate it with your mini or anaconda
 
 to save a model use 
 ```sh
