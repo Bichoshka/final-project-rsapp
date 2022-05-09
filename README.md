@@ -17,7 +17,9 @@ This is achieved using fire module
 Been tracking progress via comet.ml:
 ![изображение](https://user-images.githubusercontent.com/96877411/167432521-97c9a72d-80bd-4473-964d-6f8a7d9099e4.png)
 as for metrics:
-
+multiclass accuracy seems like a good choice, f1 score almost completely follows it as expected, and got somewhat huge AUC number that seems gucci
+ flip flap
+ let's stick to accuracy from now on
 ![изображение](https://user-images.githubusercontent.com/96877411/167421854-39c94743-a138-4539-a448-9dee5c5e7ebf.png)
 
 Result on kaggle was like
