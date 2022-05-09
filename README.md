@@ -16,7 +16,7 @@ This is achieved using fire module
 
 Been tracking progress via comet.ml:
 ![изображение](https://user-images.githubusercontent.com/96877411/167432521-97c9a72d-80bd-4473-964d-6f8a7d9099e4.png)
-as for metrics:
+My thoughts on metrics:
 multiclass accuracy looks like a good choice, f1 score almost completely follows it as expected, and got somewhat huge AUC number which seems gucci
  flip flap
  let's stick to accuracy from now on
