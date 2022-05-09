@@ -15,7 +15,7 @@ right from the root folder
 This is achieved using fire module
 
 Been tracking progress via comet.ml:
-![изображение](https://user-images.githubusercontent.com/96877411/167421635-f5e9fdcc-b0bc-4618-acf4-a239335b18ad.png)
+![изображение](https://user-images.githubusercontent.com/96877411/167432521-97c9a72d-80bd-4473-964d-6f8a7d9099e4.png)
 as for metrics:
 
 ![изображение](https://user-images.githubusercontent.com/96877411/167421854-39c94743-a138-4539-a448-9dee5c5e7ebf.png)
