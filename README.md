@@ -19,6 +19,7 @@ Been tracking progress via comet.ml:
 My thoughts on metrics:
 multiclass accuracy looks like a good choice, f1 score almost completely follows it as expected, and got somewhat huge AUC number which seems gucci
  flip flap
+ 
  let's stick to accuracy from now on
 ![изображение](https://user-images.githubusercontent.com/96877411/167421854-39c94743-a138-4539-a448-9dee5c5e7ebf.png)
 
