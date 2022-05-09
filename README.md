@@ -16,6 +16,7 @@ This is achieved using fire module
 
 Been tracking progress via comet.ml:
 ![изображение](https://user-images.githubusercontent.com/96877411/167421635-f5e9fdcc-b0bc-4618-acf4-a239335b18ad.png)
+as for metrics:
 ![изображение](https://user-images.githubusercontent.com/96877411/167421854-39c94743-a138-4539-a448-9dee5c5e7ebf.png)
 
 Result on kaggle was like
