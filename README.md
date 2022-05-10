@@ -2,6 +2,8 @@ This project uses <a href="https://www.kaggle.com/competitions/forest-cover-type
 
 As for an environment manager I used conda,  feel free to download **conva_env.yaml** and activate it with your mini or anaconda
 
+The main work consists of 4 files: preprocess.py, Forest.py, model.py and saving.py(saving script only)
+
 to save a model use 
 ```sh
 python saving.py save
